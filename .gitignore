@@ -1,19 +1,17 @@
 # Environment Variables
 .env
 
-# Python cache
-__pycache__/
-*.pyc
+# Generated Files
+documents/
+index/
 
 # Virtual Environment
 venv/
 .venv/
 
-# FAISS Index
-index/
-
-# Uploaded PDFs
-documents/
+# Python
+__pycache__/
+*.pyc
 
 # Streamlit
 .streamlit/
