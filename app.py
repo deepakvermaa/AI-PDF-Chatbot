@@ -6,6 +6,9 @@ from loader import load_resources
 from retrieval import retrieve_context
 from generator import generate_answer
 
+os.makedirs("documents", exist_ok=True)
+os.makedirs("index", exist_ok=True)
+
 
 @st.cache_resource
 def initialize():
@@ -18,7 +21,9 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if "pdf_processed" not in st.session_state:
-    st.session_state.pdf_processed = False
+    st.session_state.pdf_processed = (
+        index is not None and chunks is not None
+    )
 
 st.title("📄 AI PDF Chatbot")
 
@@ -34,7 +39,7 @@ with st.sidebar:
 
     if uploaded_file:
 
-        st.success("PDF uploaded successfully!")
+        st.info("Click **Process PDF** to create embeddings.")
         st.write(f"📄 {uploaded_file.name}")
 
         if st.button("Process PDF"):
@@ -63,6 +68,9 @@ with st.sidebar:
                     initialize.clear()
 
                     client, model, index, chunks = initialize()
+
+                    if index is None:
+                        st.info("📄 Upload a PDF and click **Process PDF** to start chatting.")
                     
                     st.session_state.messages = []  # start a new conversation if i upload new pdf
                     st.session_state.pdf_processed = True
@@ -87,7 +95,11 @@ for message in st.session_state.messages:
 
 question = st.chat_input(
     "Ask anything from your PDF...",
-    disabled=not st.session_state.pdf_processed
+    disabled=(
+        index is None
+        or chunks is None
+        or not st.session_state.pdf_processed
+    )
 )
 
 if question:

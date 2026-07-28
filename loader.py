@@ -28,6 +28,21 @@ def load_chunks(chunks_path):
     return chunks
 
 
+# def load_resources():
+#     project_folder = Path(__file__).parent
+
+#     index_folder = project_folder / INDEX_FOLDER
+#     faiss_index_path = index_folder / FAISS_FILE
+#     chunks_path = index_folder / CHUNKS_FILE
+
+#     client = load_gemini_client()
+#     model = load_embedding_model()
+#     index = load_faiss_index(faiss_index_path)
+#     chunks = load_chunks(chunks_path)
+
+#     return client, model, index, chunks
+
+
 def load_resources():
     project_folder = Path(__file__).parent
 
@@ -37,7 +52,12 @@ def load_resources():
 
     client = load_gemini_client()
     model = load_embedding_model()
-    index = load_faiss_index(faiss_index_path)
-    chunks = load_chunks(chunks_path)
+
+    if faiss_index_path.exists() and chunks_path.exists():
+        index = load_faiss_index(faiss_index_path)
+        chunks = load_chunks(chunks_path)
+    else:
+        index = None
+        chunks = None
 
     return client, model, index, chunks
