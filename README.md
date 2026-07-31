@@ -1,5 +1,9 @@
 # 🤖 AI PDF Chatbot
 
+## 🔗 Live Demo
+
+👉 https://ai-pdf-chatbot-dumk7t7yqbohlrvmpgsrxy.streamlit.app/
+
 An AI-powered PDF Question Answering application built with **Streamlit**, **Google Gemini**, **FAISS**, and **Sentence Transformers**.
 
 Upload a PDF, ask questions in natural language, and receive context-aware answers generated using Retrieval-Augmented Generation (RAG).
