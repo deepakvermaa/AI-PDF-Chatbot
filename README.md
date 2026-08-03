@@ -103,25 +103,8 @@ streamlit run app.py
 
 ## 📸 Application Preview
 
-> Add screenshots here after deployment.
+<img width="959" height="442" alt="Screenshot 2026-07-28 233428" src="https://github.com/user-attachments/assets/17382774-095c-407a-a9de-62ce3f77672d" />
 
-Example:
-
-```
-images/
-    home.png
-    chat.png
-```
-
-Then use:
-
-```markdown
-![Home](images/home.png)
-
-![Chat](images/chat.png)
-```
-
----
 
 ## 🔮 Future Improvements
 
